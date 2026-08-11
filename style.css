@@ -1,1 +1,590 @@
+/* =========================
+   RESET
+========================= */
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family: "Poppins", sans-serif;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #29204d 0%,
+            #120d25 45%,
+            #07050f 100%
+        );
+
+    color: #ffffff;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.background-grid {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0.16;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.08) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.08) 1px,
+            transparent 1px
+        );
+
+    background-size: 35px 35px;
+
+    transform: perspective(500px) rotateX(55deg) scale(1.5);
+
+    transform-origin: bottom;
+}
+
+
+/* =========================
+   MAIN APP
+========================= */
+
+.app {
+    position: relative;
+
+    width: 100%;
+
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    padding: 25px 16px 40px;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    text-align: center;
+
+    padding: 20px 0 25px;
+}
+
+.live-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 7px 14px;
+
+    margin-bottom: 18px;
+
+    border: 1px solid #ff3cac;
+
+    border-radius: 30px;
+
+    background: rgba(255, 60, 172, 0.12);
+
+    color: #ff5fc7;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    box-shadow:
+        0 0 12px rgba(255, 60, 172, 0.35);
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #ff3b81;
+
+    box-shadow:
+        0 0 10px #ff3b81;
+
+    animation: pulse 1.2s infinite;
+}
+
+.hero h1 {
+    font-family: "Orbitron", sans-serif;
+
+    font-size: clamp(30px, 9vw, 55px);
+
+    line-height: 1.05;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 0 10px rgba(255, 255, 255, 0.2),
+        0 0 30px rgba(0, 229, 255, 0.25);
+}
+
+.hero h1 span {
+    display: block;
+
+    color: #00e5ff;
+
+    text-shadow:
+        0 0 8px #00e5ff,
+        0 0 25px rgba(0, 229, 255, 0.65);
+}
+
+.subtitle {
+    margin-top: 14px;
+
+    color: #bdb8d4;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   STATUS CARD
+========================= */
+
+.status-card {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    margin-bottom: 22px;
+}
+
+.status-card > div {
+    padding: 15px;
+
+    text-align: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 15px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    backdrop-filter: blur(10px);
+}
+
+.status-label {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #817a9f;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.status-card strong {
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 18px;
+}
+
+.online {
+    color: #57ff9a;
+
+    text-shadow:
+        0 0 12px rgba(87, 255, 154, 0.7);
+}
+
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 14px;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   PLAYER CARDS
+========================= */
+
+.leaderboard {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.player-card {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 45px 1fr auto;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-height: 70px;
+
+    padding: 10px 14px;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.09),
+            rgba(255, 255, 255, 0.035)
+        );
+
+    backdrop-filter: blur(12px);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.player-card:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(0, 229, 255, 0.4);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================
+   RANK
+========================= */
+
+.rank {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: #aaa4c0;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+
+/* =========================
+   PLAYER NAME
+========================= */
+
+.player-info {
+    min-width: 0;
+}
+
+.player-name {
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+/* =========================
+   SCORE
+========================= */
+
+.score {
+    text-align: right;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 900;
+
+    color: #00e5ff;
+
+    text-shadow:
+        0 0 10px rgba(0, 229, 255, 0.6);
+}
+
+.score-label {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #77718e;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   TOP 3
+========================= */
+
+.player-card.rank-1 {
+    border-color: rgba(255, 214, 70, 0.5);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 214, 70, 0.16),
+            rgba(255, 255, 255, 0.04)
+        );
+
+    box-shadow:
+        0 0 25px rgba(255, 214, 70, 0.08);
+}
+
+.player-card.rank-1 .rank {
+    background: rgba(255, 214, 70, 0.18);
+
+    color: #ffd646;
+
+    box-shadow:
+        0 0 15px rgba(255, 214, 70, 0.3);
+}
+
+.player-card.rank-1 .score {
+    color: #ffd646;
+
+    text-shadow:
+        0 0 10px rgba(255, 214, 70, 0.7);
+}
+
+
+.player-card.rank-2 {
+    border-color: rgba(190, 200, 220, 0.35);
+}
+
+.player-card.rank-2 .rank {
+    color: #d9deea;
+}
+
+
+.player-card.rank-3 {
+    border-color: rgba(230, 145, 75, 0.35);
+}
+
+.player-card.rank-3 .rank {
+    color: #e89b5b;
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.loading {
+    padding: 50px 20px;
+
+    text-align: center;
+
+    color: #8e88a8;
+
+    font-size: 13px;
+}
+
+.loader {
+    width: 35px;
+    height: 35px;
+
+    margin: 0 auto 15px;
+
+    border: 3px solid rgba(255, 255, 255, 0.1);
+
+    border-top-color: #00e5ff;
+
+    border-radius: 50%;
+
+    animation: spin 0.8s linear infinite;
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error {
+    padding: 25px;
+
+    text-align: center;
+
+    border: 1px solid rgba(255, 70, 120, 0.3);
+
+    border-radius: 15px;
+
+    background: rgba(255, 70, 120, 0.08);
+
+    color: #ff789d;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   LAST UPDATE
+========================= */
+
+.last-update {
+    margin-top: 20px;
+
+    text-align: center;
+
+    color: #6f6988;
+
+    font-size: 10px;
+}
+
+.last-update span {
+    color: #a8a2c0;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    margin-top: 30px;
+
+    text-align: center;
+
+    color: #5f5978;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+footer span {
+    color: #00e5ff;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.4;
+        transform: scale(0.7);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 420px) {
+
+    .app {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .player-card {
+        grid-template-columns: 40px 1fr auto;
+
+        min-height: 65px;
+
+        padding: 9px 10px;
+    }
+
+    .rank {
+        width: 34px;
+        height: 34px;
+    }
+
+    .player-name {
+        font-size: 13px;
+    }
+
+    .score {
+        font-size: 14px;
+    }
+}
