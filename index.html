@@ -1,1 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
 
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Challenge Arcade</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="background-grid"></div>
+
+    <main class="app">
+
+        <!-- HEADER -->
+        <header class="hero">
+
+            <div class="live-badge">
+                <span class="live-dot"></span>
+                LIVE
+            </div>
+
+            <h1>
+                CHALLENGE
+                <span>ARCADE</span>
+            </h1>
+
+            <p class="subtitle">
+                Who will reach the top? ⚡
+            </p>
+
+        </header>
+
+
+        <!-- STATUS -->
+        <section class="status-card">
+
+            <div>
+                <span class="status-label">
+                    PLAYERS
+                </span>
+
+                <strong id="playerCount">
+                    20
+                </strong>
+            </div>
+
+            <div>
+                <span class="status-label">
+                    STATUS
+                </span>
+
+                <strong class="online">
+                    ONLINE
+                </strong>
+            </div>
+
+        </section>
+
+
+        <!-- LEADERBOARD -->
+        <section class="leaderboard-section">
+
+            <div class="section-title">
+                <span>🏆</span>
+                LEADERBOARD
+            </div>
+
+            <div id="leaderboard" class="leaderboard">
+
+                <div class="loading">
+                    <div class="loader"></div>
+                    <p>Loading players...</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- LAST UPDATE -->
+        <div class="last-update">
+            Last update:
+            <span id="lastUpdate">--:--</span>
+        </div>
+
+
+        <!-- FOOTER -->
+        <footer>
+            <span>⚡</span>
+            CHALLENGE DAY
+            <span>⚡</span>
+        </footer>
+
+    </main>
+
+
+    <!-- SUPABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- YOUR JAVASCRIPT -->
+    <script src="script.js"></script>
+
+</body>
+</html>
