@@ -1,1 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Panel</title>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =========================
+           ADMIN PAGE
+        ========================= */
+
+        .admin-wrapper {
+
+            width: 100%;
+
+            max-width: 650px;
+
+            margin: 0 auto;
+
+            padding: 30px 16px 50px;
+
+            position: relative;
+
+        }
+
+
+        .admin-header {
+
+            text-align: center;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .admin-header h1 {
+
+            font-family: "Orbitron", sans-serif;
+
+            font-size: clamp(25px, 8vw, 42px);
+
+            color: #ff3cac;
+
+            text-shadow:
+                0 0 10px rgba(255, 60, 172, .7),
+                0 0 25px rgba(255, 60, 172, .3);
+
+        }
+
+
+        .admin-header p {
+
+            margin-top: 8px;
+
+            color: #8f89a8;
+
+            font-size: 13px;
+
+        }
+
+
+        .login-box {
+
+            padding: 25px;
+
+            border: 1px solid rgba(255,255,255,.12);
+
+            border-radius: 20px;
+
+            background: rgba(255,255,255,.05);
+
+            backdrop-filter: blur(15px);
+
+        }
+
+
+        .input-group {
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .input-group label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #aaa4c0;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .input-group input {
+
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border: 1px solid rgba(255,255,255,.12);
+
+            border-radius: 12px;
+
+            outline: none;
+
+            background: rgba(0,0,0,.25);
+
+            color: white;
+
+            font-family: "Poppins", sans-serif;
+
+            font-size: 14px;
+
+        }
+
+
+        .input-group input:focus {
+
+            border-color: #00e5ff;
+
+            box-shadow:
+                0 0 12px rgba(0,229,255,.2);
+
+        }
+
+
+        .admin-button {
+
+            width: 100%;
+
+            border: none;
+
+            border-radius: 12px;
+
+            padding: 14px;
+
+            background: linear-gradient(
+                135deg,
+                #ff3cac,
+                #784bff
+            );
+
+            color: white;
+
+            font-family: "Orbitron", sans-serif;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 25px rgba(255,60,172,.2);
+
+            transition: .2s;
+
+        }
+
+
+        .admin-button:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 30px rgba(255,60,172,.35);
+
+        }
+
+
+        .admin-button:disabled {
+
+            opacity: .5;
+
+            cursor: not-allowed;
+
+        }
+
+
+        .admin-panel {
+
+            display: none;
+
+        }
+
+
+        .admin-panel.visible {
+
+            display: block;
+
+        }
+
+
+        .admin-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .admin-status {
+
+            color: #57ff9a;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+        }
+
+
+        .logout {
+
+            width: auto;
+
+            padding: 9px 13px;
+
+            background: rgba(255,255,255,.07);
+
+            box-shadow: none;
+
+            font-size: 10px;
+
+        }
+
+
+        .admin-player {
+
+            padding: 17px;
+
+            margin-bottom: 11px;
+
+            border: 1px solid rgba(255,255,255,.1);
+
+            border-radius: 17px;
+
+            background: rgba(255,255,255,.05);
+
+        }
+
+
+        .player-row {
+
+            display: grid;
+
+            grid-template-columns: 1fr auto;
+
+            gap: 12px;
+
+            align-items: center;
+
+        }
+
+
+        .admin-player-name {
+
+            width: 100%;
+
+            border: 1px solid rgba(255,255,255,.1);
+
+            border-radius: 10px;
+
+            padding: 10px;
+
+            background: rgba(0,0,0,.2);
+
+            color: white;
+
+            outline: none;
+
+            font-family: "Poppins", sans-serif;
+
+            font-weight: 600;
+
+        }
+
+
+        .admin-score {
+
+            min-width: 65px;
+
+            text-align: center;
+
+            color: #00e5ff;
+
+            font-family: "Orbitron", sans-serif;
+
+            font-weight: 900;
+
+        }
+
+
+        .score-buttons {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            gap: 7px;
+
+            margin-top: 12px;
+
+        }
+
+
+        .score-btn {
+
+            border: 1px solid rgba(255,255,255,.1);
+
+            border-radius: 9px;
+
+            padding: 9px 4px;
+
+            background: rgba(255,255,255,.06);
+
+            color: white;
+
+            font-family: "Orbitron", sans-serif;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+        }
+
+
+        .score-btn.plus {
+
+            color: #57ff9a;
+
+        }
+
+
+        .score-btn.minus {
+
+            color: #ff6f91;
+
+        }
+
+
+        .score-btn:hover {
+
+            background: rgba(255,255,255,.12);
+
+        }
+
+
+        .save-name {
+
+            margin-top: 9px;
+
+            width: 100%;
+
+            padding: 8px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: rgba(0,229,255,.1);
+
+            color: #00e5ff;
+
+            cursor: pointer;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+        }
+
+
+        .message {
+
+            margin-top: 14px;
+
+            padding: 10px;
+
+            border-radius: 10px;
+
+            text-align: center;
+
+            font-size: 11px;
+
+        }
+
+
+        .message.error {
+
+            color: #ff789d;
+
+            background: rgba(255,70,120,.08);
+
+        }
+
+
+        .message.success {
+
+            color: #57ff9a;
+
+            background: rgba(87,255,154,.08);
+
+        }
+
+
+        @media (max-width: 420px) {
+
+            .score-buttons {
+
+                grid-template-columns:
+                    repeat(5, 1fr);
+
+            }
+
+            .score-btn {
+
+                font-size: 9px;
+
+                padding: 8px 2px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="background-grid"></div>
+
+
+    <main class="admin-wrapper">
+
+        <!-- HEADER -->
+
+        <header class="admin-header">
+
+            <div class="live-badge">
+                🔐 ADMIN AREA
+            </div>
+
+            <h1>
+                CONTROL PANEL
+            </h1>
+
+            <p>
+                Manage players and scores
+            </p>
+
+        </header>
+
+
+        <!-- LOGIN -->
+
+        <section id="loginSection">
+
+            <div class="login-box">
+
+                <div class="input-group">
+
+                    <label for="email">
+                        ADMIN EMAIL
+                    </label>
+
+                    <input
+                        id="email"
+                        type="email"
+                        placeholder="Enter admin email"
+                        autocomplete="username"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="password">
+                        PASSWORD
+                    </label>
+
+                    <input
+                        id="password"
+                        type="password"
+                        placeholder="Enter password"
+                        autocomplete="current-password"
+                    >
+
+                </div>
+
+
+                <button
+                    id="loginButton"
+                    class="admin-button"
+                >
+                    LOGIN
+                </button>
+
+
+                <div
+                    id="loginMessage"
+                    class="message"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ADMIN PANEL -->
+
+        <section
+            id="adminPanel"
+            class="admin-panel"
+        >
+
+            <div class="admin-top">
+
+                <span class="admin-status">
+                    ● ADMIN ONLINE
+                </span>
+
+
+                <button
+                    id="logoutButton"
+                    class="admin-button logout"
+                >
+                    LOGOUT
+                </button>
+
+            </div>
+
+
+            <div id="adminPlayers"></div>
+
+        </section>
+
+    </main>
+
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- ADMIN JS -->
+
+    <script src="admin.js"></script>
+
+</body>
+
+</html>
